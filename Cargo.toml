@@ -1,6 +1,6 @@
 [package]
 
-name = "coreutils-rs"
+name = "coreutils"
 version = "0.0.1"
 authors = ["Gary M. Josack <gary@byoteki.com>"]
 

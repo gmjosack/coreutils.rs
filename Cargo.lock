@@ -1,4 +1,4 @@
 [root]
-name = "coreutils-rs"
+name = "coreutils"
 version = "0.0.1"
 
