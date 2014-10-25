@@ -1,3 +1,5 @@
+use std::os;
+
 fn main() {
-    std::os::set_exit_status(1);
+    os::set_exit_status(1);
 }
