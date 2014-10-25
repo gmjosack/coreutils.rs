@@ -6,15 +6,15 @@ use std::os;
 
 
 fn main() {
-    unsafe {
+    let login = unsafe {
+        CString::new(
+            getlogin() as *const libc::c_char,
+            false
+        )
+    };
 
-        let login_c = getlogin() as *const libc::c_char;
-        let login = CString::new(login_c, false);
-
-        match login.as_str() {
-            Some(username) => println!("{}", username),
-            None => os::set_exit_status(1),
-        }
-
+    match login.as_str() {
+        Some(username) => println!("{}", username),
+        None => os::set_exit_status(1),
     }
 }
