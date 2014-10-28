@@ -1,10 +1,9 @@
-#![feature(slicing_syntax)]
-
 extern crate getopts;
 
 extern crate coreutils;
 
 use std::os;
+use std::io;
 
 fn main() {
 
@@ -22,7 +21,7 @@ fn main() {
             println!("{}", f.to_string());
             println!("-------------------------------");
             println!("Usage: {}", getopts::usage(program.as_slice(), opts));
-            fail!()
+            return;
         },
     };
 
@@ -38,10 +37,15 @@ fn main() {
 
     let output = match args.len() {
         1 => "y".to_string(),
-        _ => args[1..].connect(" "),
+        _ => args.tail().connect(" "),
     };
 
+    let mut stdout = io::stdio::stdout();
+
     loop {
-        println!("{}", output);
+        match writeln!(stdout, "{}", output).err() {
+            Some(io::IoError { kind: io::BrokenPipe, .. }) => break,
+            _ => (),
+        }
     }
 }
