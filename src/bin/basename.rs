@@ -19,7 +19,7 @@ fn main() {
     let program = args[0].clone();
     let program_usage = format!("{} NAME [SUFFIX]", program);
 
-    let opts = [
+    let opts = &[
         getopts::optflag("h", "help", "display this help and exit"),
         getopts::optflag("V", "version", "output version information and exit"),
     ];
