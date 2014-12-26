@@ -4,6 +4,7 @@ extern crate coreutils;
 
 use std::os;
 use std::io;
+use std::fmt;
 
 fn main() {
 
@@ -40,7 +41,7 @@ fn main() {
         _ => args.tail().connect(" "),
     };
 
-    let mut stdout = io::stdio::stdout();
+    let mut stdout = &mut io::stdio::stdout();
 
     loop {
         match writeln!(stdout, "{}", output).err() {
